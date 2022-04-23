@@ -24,19 +24,23 @@
         <div class="modal-body">
             <form method="POST" action="/createCinema">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="name" placeholder="Serie/Anime/Film Title">
+                    <input type="text" class="form-control" placeholder="Serie/Anime/Film Title" name="name">
                     <label for="floatingInput">Name</label>
                   </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Episode" name="episode">
+                    <label for="floatingInput">Episode</label>
+                  </div>
                   <div class="form-floating mb-3"">
-                    <input type="text" class="form-control" id="season" placeholder="Season">
+                    <input type="text" class="form-control" placeholder="Season" name="season">
                     <label for="floatingInput">Season</label>
                   </div>
                   <div class="form-floating mb-3"">
-                    <input type="text" class="form-control" id="minute" placeholder="Minute">
+                    <input type="text" class="form-control" placeholder="Minute" name="minute">
                     <label for="floatingInput">Minute</label>
                   </div>
                   <div class="form-floating mb-3"">
-                    <input type="text" class="form-control" id="link" placeholder="Link">
+                    <input type="text" class="form-control" placeholder="Link" name="link">
                     <label for="floatingInput">Link</label>
                   </div>
 

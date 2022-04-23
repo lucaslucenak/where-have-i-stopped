@@ -1,6 +1,7 @@
 const express = require('express');
 app = express();
 const bodyParser = require('body-parser');
+const tb_cinemas = require('./database/models/tb_cinemas')
 
 app.set('view engine', 'ejs');
 
@@ -12,7 +13,16 @@ app.get('/', (req, res) => {
 })
 
 app.post('/createCinema', (req, res) => {
-    res.send('Form recebido')
+    var name = req.body.name;
+    var episode = req.body.episode;
+    var season = req.body.season;
+    var minute = req.body.minute;
+    var link = req.body.link;
+    tb_cinemas.create({name: name, episode: episode, season: season, minute: minute, link: link}).then(() => {
+        res.redirect('/');
+    });
+    console.log(name + ' ' + episode + ' ' + season + ' ' + minute + ' ' + link);
+    
 })
 
 app.get('/wishList', (req, res) => {
