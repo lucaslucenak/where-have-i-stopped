@@ -32,6 +32,36 @@ app.post('/createCinema', (req, res) => {
     console.log(name + ' ' + episode + ' ' + season + ' ' + minute + ' ' + link);
 });
 
+app.post('/searchCinema', (req, res) => {
+    var nameSearch = req.body.nameSearch;
+    tb_cinemas.findAll({where: {name: nameSearch}}).then(cinemas => {
+        res.render('../views/searchedCinemas.ejs', { 
+            cinemas: cinemas
+        });
+    });
+});
+
+app.post('/deleteCinema', (req, res) => {
+    var id = req.body.id;
+    if (id != undefined) {
+        if (!isNaN(id)) {
+            tb_cinemas.destroy({where: {id: id}}).then(() => {
+                res.redirect('/')
+            })
+        }
+        else {
+            res.redirect('/')
+        }
+    }
+    else {
+        res.redirect('/')
+    }
+})
+
+app.get('/searchedCinemas', (req, res) => {
+    res.render('../views/seachedCinemas.ejs')
+})
+
 app.get('/wishList', (req, res) => {
     tb_wishLists.findAll({raw: true, order:[
         ['id', 'DESC']
