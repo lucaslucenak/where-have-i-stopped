@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
     
 });
 
+//*********************************************************************************************//
+//-------------------------------------------CINEMAS-------------------------------------------//
+//*********************************************************************************************//
+
 app.post('/createCinema', (req, res) => {
     var name = req.body.name;
     var episode = req.body.episode;
@@ -40,6 +44,10 @@ app.post('/searchCinema', (req, res) => {
         });
     });
 });
+app.get('/searchedCinemas', (req, res) => {
+    res.render('../views/seachedCinemas.ejs')
+})
+
 
 app.post('/deleteCinema', (req, res) => {
     var id = req.body.id;
@@ -58,9 +66,31 @@ app.post('/deleteCinema', (req, res) => {
     }
 })
 
-app.get('/searchedCinemas', (req, res) => {
-    res.render('../views/seachedCinemas.ejs')
+app.post('/editCinema', (req, res) => {
+    var newName = req.body.newName;
+    var newEpisode = req.body.newEpisode;
+    var newSeason = req.body.newSeason;
+    var newMinute = req.body.newMinute;
+    var newLink = req.body.newLink;
+
+    var id = req.body.id;
+
+    tb_cinemas.update({
+        name: newName,
+        episode: newEpisode,
+        season: newSeason,
+        minute: newMinute,
+        link: newLink
+    }, {
+        where: {id: id},
+    }). then(() => {
+        res.redirect('/')
+    })
 })
+
+//*********************************************************************************************//
+//--------------------------------------------WISHES-------------------------------------------//
+//*********************************************************************************************//
 
 app.get('/wishList', (req, res) => {
     tb_wishLists.findAll({raw: true, order:[
