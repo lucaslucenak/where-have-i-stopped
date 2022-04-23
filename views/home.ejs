@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
 
 
     <div class="container">
@@ -57,15 +57,18 @@
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/createCinema">
+
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" placeholder="Serie/Anime/Film Title"
                                     name="name">
                                 <label for="floatingInput">Name</label>
                             </div>
+
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" placeholder="Episode" name="name">
+                                <input type="text" class="form-control" placeholder="Episode" name="episode">
                                 <label for="floatingInput">Episode</label>
                             </div>
+
                             <div class="form-floating mb-3"">
                         <input type=" text" class="form-control" placeholder="Season" name="season">
                                 <label for="floatingInput">Season</label>
@@ -89,7 +92,16 @@
             </div>
         </div>
 
-        <table class="table table-striped table-hover">
+        <div class="input-group input-group-lg mb-5 mt-5">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#searchCinema">Search
+                Cinema</button>
+        </div>
+
+
+        <table class="table table-striped table-hover bg-light">
 
             <thead>
                 <tr>
