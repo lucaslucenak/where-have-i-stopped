@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    tb_cinemas.findAll({raw: true}).then(cinemas => {
+    tb_cinemas.findAll({raw: true, order:[
+        ['id','DESC']
+    ]}).then(cinemas => {
         res.render('../views/home.ejs', {
             cinemas: cinemas
         });
@@ -31,7 +33,9 @@ app.post('/createCinema', (req, res) => {
 });
 
 app.get('/wishList', (req, res) => {
-    tb_wishLists.findAll({raw: true}).then(wishLists => {
+    tb_wishLists.findAll({raw: true, order:[
+        ['id', 'DESC']
+    ]}).then(wishLists => {
         res.render('../views/wishList.ejs', {
             wishLists: wishLists});
     })
@@ -46,11 +50,11 @@ app.post('/createWish', (req, res) => {
     });
 });
 
-app.listen(8016, function (err) {
+app.listen(8023, function (err) {
     if (err) {
         console.error(err)
     }
     else {
-        console.log('listening on port http://localhost:8016')
+        console.log('listening on port http://localhost:8023')
     }
 })
