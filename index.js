@@ -10,8 +10,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.render('../views/home.ejs')
-})
+    tb_cinemas.findAll({raw: true}).then(cinemas => {
+        res.render('../views/home.ejs', {
+            cinemas: cinemas
+        });
+    });
+    
+});
 
 app.post('/createCinema', (req, res) => {
     var name = req.body.name;
@@ -23,11 +28,14 @@ app.post('/createCinema', (req, res) => {
         res.redirect('/');
     });
     console.log(name + ' ' + episode + ' ' + season + ' ' + minute + ' ' + link);
-    
-})
+});
 
 app.get('/wishList', (req, res) => {
-    res.render('../views/wishList.ejs')
+    tb_wishLists.findAll({raw: true}).then(wishLists => {
+        res.render('../views/wishList.ejs', {
+            wishLists: wishLists});
+    })
+    
 })
 
 app.post('/createWish', (req, res) => {
@@ -38,11 +46,11 @@ app.post('/createWish', (req, res) => {
     });
 });
 
-app.listen(8086, function (err) {
+app.listen(8016, function (err) {
     if (err) {
         console.error(err)
     }
     else {
-        console.log('listening on port http://localhost:8086')
+        console.log('listening on port http://localhost:8016')
     }
 })
