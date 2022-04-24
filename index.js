@@ -66,14 +66,21 @@ app.post('/deleteCinema', (req, res) => {
     }
 })
 
-app.post('/editCinema', (req, res) => {
+app.get('/editCinema/:id', (req, res) => {
+    var id = req.params.id;
+    tb_cinemas.findOne({where: {id: id}}).then((cinema) => {
+        res.render('../views/editCinema.ejs', {cinema: cinema})
+    })
+})
+app.post('/makeEdition', (req, res) => {
+    var id = req.body.id;
     var newName = req.body.newName;
     var newEpisode = req.body.newEpisode;
     var newSeason = req.body.newSeason;
     var newMinute = req.body.newMinute;
     var newLink = req.body.newLink;
 
-    var id = req.body.id;
+    console.log(newName + ' ' + newEpisode + ' ' + newSeason + ' ' + newMinute + ' ' + newLink);
 
     tb_cinemas.update({
         name: newName,
@@ -81,9 +88,7 @@ app.post('/editCinema', (req, res) => {
         season: newSeason,
         minute: newMinute,
         link: newLink
-    }, {
-        where: {id: id},
-    }). then(() => {
+    }, {where: {id: id}}).then(() => {
         res.redirect('/')
     })
 })

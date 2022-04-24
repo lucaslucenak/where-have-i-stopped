@@ -64,66 +64,7 @@
                         <input type="hidden" name="id" value="<%= cinema.id %>">
                         <td><button class="btn btn-danger">Delete</button></td>
                     </form>
-                    <form method="post" action="/editCinema" style="display:inline;">
-                        <input type="hidden" name="id" value="<%= cinema.id %>">
-                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#editCinema">Edit</button></td>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="editCinema" tabindex="-1" aria-labelledby="Edit Cinema"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="Edit Cinema">Edit Cinema</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" action="/editCinema">
-                                            <input type="hidden" name="id" value="<%= cinema.name %>">
-
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control"
-                                                    placeholder="Serie/Anime/Film Title" name="newName"
-                                                    value="<%= cinema.name %>">
-                                                <label for="floatingInput">Name</label>
-                                            </div>
-
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" placeholder="Episode"
-                                                    name="newEpisode" value="<%= cinema.episode %>">
-                                                <label for="floatingInput">Episode</label>
-                                            </div>
-
-                                            <div class="form-floating mb-3"">
-                                                <input type=" text" class="form-control" placeholder="Season"
-                                                name="newSeason" value="<%= cinema.season %>">
-                                                <label for="floatingInput">Season</label>
-                                            </div>
-                                            <div class="form-floating mb-3"">
-                                                <input type=" text" class="form-control" placeholder="Minute"
-                                                name="newMinute" value="<%= cinema.minute %>">
-                                                <label for="floatingInput">Minute</label>
-                                            </div>
-                                            <div class="form-floating mb-3"">
-                                                <input type=" text" class="form-control" placeholder="Link"
-                                                name="newLink" value="<%= cinema.link %>">
-                                                <label for="floatingInput">Link</label>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button class="btn btn-danger">Edit Changes</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    
+                    <td><a href="/editCinema/<%= cinema.id %>" type="button" class="btn btn-primary btn-small"><i class="bi bi-pencil"></i>Edit</a></td>
                 </tr>
                 <% }) %>
             </tbody>
